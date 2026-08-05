@@ -36,7 +36,7 @@ st.write(result)
 analysis = result["analysis"]
 recommendations = result["recommendations"]
 prediction = result["prediction"]
-chat = "AI Chat will be enabled soon."
+chat = result["chat"]
 # st.subheader("🤖 AI Chat Assistant")
 # st.success(chat)
 # Metrics
