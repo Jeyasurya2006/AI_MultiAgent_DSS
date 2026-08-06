@@ -4,6 +4,7 @@ from agents.analysis_agent import AnalysisAgent
 from agents.prediction_agent import PredictionAgent
 from agents.recommendation_agent import RecommendationAgent
 from agents.chat_agent import ChatAgent
+from database.database_agent import DatabaseAgent
 
 
 class OrchestratorAgent:
@@ -15,6 +16,7 @@ class OrchestratorAgent:
         self.prediction_agent = PredictionAgent()
         self.recommendation_agent = RecommendationAgent()
         self.chat_agent = ChatAgent()
+        self.database_agent = DatabaseAgent()
 
     def execute(self, file_path):
         data = self.data_agent.load_data(file_path)
@@ -26,6 +28,7 @@ class OrchestratorAgent:
         recommendations = self.recommendation_agent.recommend(clean_data)
 
         prediction = self.prediction_agent.predict("datasets/monthly_sales.xlsx")
+        self.database_agent.save_analysis(analysis, prediction)
 
         chat_response = self.chat_agent.answer(
             "highest sales",

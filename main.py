@@ -16,3 +16,6 @@ for recommendation in result["recommendations"]:
 
 print("\n========== SALES PREDICTION ==========")
 print(f"Predicted Month 13 Sales: {result['prediction']}")
+
+print("\n========== AI CHAT ==========")
+print(result["chat"])
