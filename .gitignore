@@ -7,3 +7,10 @@ __pycache__/
 reports/Sales_Report.pdf
 
 *.log
+.venv/
+__pycache__/
+*.pyc
+
+datasets/uploaded_sales.xlsx
+
+*.db

@@ -19,17 +19,29 @@ class OrchestratorAgent:
         self.database_agent = DatabaseAgent()
 
     def execute(self, file_path):
+
+        # 1. Load uploaded data
         data = self.data_agent.load_data(file_path)
 
+        # 2. Clean data
         clean_data = self.cleaning_agent.clean_data(data)
 
+        # 3. Analyze data
         analysis = self.analysis_agent.analyze(clean_data)
 
+        # 4. Generate recommendations
         recommendations = self.recommendation_agent.recommend(clean_data)
 
-        prediction = self.prediction_agent.predict("datasets/monthly_sales.xlsx")
-        self.database_agent.save_analysis(analysis, prediction)
+        # 5. Predict using the SAME uploaded file
+        prediction = self.prediction_agent.predict(file_path)
 
+        # 6. Save analysis and prediction
+        self.database_agent.save_analysis(
+            analysis,
+            prediction
+        )
+
+        # 7. Default chat response
         chat_response = self.chat_agent.answer(
             "highest sales",
             analysis,
@@ -42,3 +54,11 @@ class OrchestratorAgent:
             "prediction": prediction,
             "chat": chat_response
         }
+
+    def chat(self, question, analysis, recommendations):
+
+        return self.chat_agent.answer(
+            question,
+            analysis,
+            recommendations
+        )
