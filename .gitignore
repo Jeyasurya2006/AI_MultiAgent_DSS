@@ -4,12 +4,13 @@ __pycache__/
 
 .vscode/
 
+.env
+.env.*
+!.env.example
+
 reports/Sales_Report.pdf
 
 *.log
-.venv/
-__pycache__/
-*.pyc
 
 datasets/uploaded_sales.xlsx
 
